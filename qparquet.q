@@ -12,7 +12,7 @@ p)def getColumnNames(file):    return (pq.read_schema(file)).names
 
 getColumnNames:.p.get`getColumnNames
 
-p)def getColumns(file, cols):    table=pq.read_table('example.parquet', columns=cols); return (table.to_pandas()).to_dict('list')
+p)def getColumns(file, cols):    table=pq.read_table(file, columns=cols); return (table.to_pandas()).to_dict('list')
 
 getColumns:.p.get`getColumns
 
