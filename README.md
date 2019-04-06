@@ -1,12 +1,24 @@
 # qparquet
 
-Example of reading and writing .parquet files from kdb+ using embedPy
+Library to read and write data from parquet files.
 
 Apache Parquet is a columnar storage format available to any project in the Hadoop ecosystem
 
+## Functions
+
+### .qparquet.getTable
+
+### .qparquet.setTable
+
+### .qparquet.getColumnNames
+
+### .qparquet.getColumns
+
+### .qparquet.getColumn
+
+### .qparquet.getColumnCustom
+
 ## Reference links
 
-* https://arrow.apache.org/docs/python/parquet.html
-* https://code.kx.com/q/ml/embedpy/
-* https://code.kx.com/q/ml/embedpy/faq/ 
-* https://code.kx.com/q/wp/embedpy-lasso/
+* [https://arrow.apache.org/docs/python/parquet.html](https://arrow.apache.org/docs/python/parquet.html)
+* [https://code.kx.com/v2/ml/embedpy/](https://code.kx.com/v2/ml/embedpy/)
