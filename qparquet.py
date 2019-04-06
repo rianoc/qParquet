@@ -1,4 +1,15 @@
+import pandas;
+import pyarrow;
 import pyarrow.parquet as parquet;
+
+def getTable(file):
+  return (parquet.read_table(file)).to_pandas();
+
+def setTable(file, table):
+  table=pandas.DataFrame(table);
+  table=pyarrow.Table.from_pandas(table);
+  parquet.write_table(table, file);
+  return file;
 
 def getColumnNames(file):
   return (parquet.read_schema(file)).names;
