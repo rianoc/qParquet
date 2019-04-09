@@ -40,6 +40,10 @@ q)\l qparquet.q
 
 ### .qparquet.getColumnCustom
 
+### .qparquet.getColumnsCustom
+
+### .qparquet.getTableCustom
+
 ## Reference links
 
 * [https://arrow.apache.org/docs/python/parquet.html](https://arrow.apache.org/docs/python/parquet.html)
