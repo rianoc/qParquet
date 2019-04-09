@@ -23,7 +23,7 @@
 .qparquet.py.getColumnNames:.p.get`getColumnNames;
 
 .qparquet.getColumnNames:{[file]
-  `$ .qparquet.py.getColumnNames[1_ string file]`
+  {x where not x like "_*"}`$ .qparquet.py.getColumnNames[1_ string file]`
   };
 
 .qparquet.py.getColumns:.p.get`getColumns;
@@ -36,8 +36,21 @@
   .qparquet.getColumns[file;enlist column]column
   };
 
-.qparquet.py.getColumnCutsom:.p.get`getColumnCustom;
+.qparquet.py.getColumnCustom:.p.get`getColumnCustom;
 
 .qparquet.getColumnCustom:{[file;column;conversion]
-   .qparquet.py.getColumnCustom[file;column;conversion]column
+  .qparquet.py.getColumnCustom[1_ string file;string column;conversion][`] column
   };
+  
+.qparquet.getColumnsCustom:{[file;columns;pyConversions;qConversions]
+  columnData:{[f;p;q;c] 
+    colData:value $[c in key p;.qparquet.getColumnCustom[;;p c]; .qparquet.getColumn],(f;c);
+    $[c in key q;q[c] colData;colData]
+    }[file;pyConversions;qConversions] each columns;
+  flip columns!columnData
+ };
+ 
+ .qparquet.getTableCustom:{[file;pyConversions;qConversions]
+  columns:.qparquet.getColumnNames[file];
+  .qparquet.getColumnsCustom[file;columns;pyConversions;qConversions]
+ };
