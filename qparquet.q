@@ -1,7 +1,7 @@
 .qparquet.init:{[]
   .qparquet.filePath:{x -3+count x} value .z.s;
-  .qparquet.basePath:"\\" sv -1_"\\" vs .qparquet.filePath;
-  if[not `p in key `;system"l ",getenv[`QHOME],"\\p.q"];
+  .qparquet.basePath:$[.z.o like "w*";{"\\" sv -1_"\\" vs x};{"/" sv -1_"/" vs x}] .qparquet.filePath;
+  if[not `p in key `;system"l ",getenv[`QHOME],$[.z.o like "w*";"\\";"/"],"p.q"];
   .p.e {"exec(open(r'",x,"').read());"}.qparquet.basePath,$[.z.o like "w*";"\\";"/"],"qparquet.py";
   };
 
