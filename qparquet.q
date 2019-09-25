@@ -3,44 +3,36 @@
   slash:$[.z.o like "w*";"\\";"/"];
   .qparquet.basePath:slash sv -1_slash vs .qparquet.filePath;
   if[not `p in key `;system"l ",getenv[`QHOME],slash,"p.q"];
-  .p.e {"exec(open(r'",x,"').read());"}.qparquet.basePath,slash,"qparquet.py";
+  .p.e"import sys";
+  .p.e "sys.path.append(\"",ssr[;"\\";"\\\\"] .qparquet.basePath,"\")";
+  .qparquet.py.lib:.p.import`qparquet;
   };
 
 .qparquet.init[];
 
-.qparquet.py.getTable:.p.get`getTable;
-
 .qparquet.getTable:{[file]
-  tab:.qparquet.py.getTable[1_ string file]`;
+  tab:.qparquet.py.lib[`:getTable][1_ string file]`;
   flip .p.wrap[tab][`:to_dict;`list]`
   };
 
-.qparquet.py.setTable:.p.get`setTable;
-
 .qparquet.setTable:{[file;table]
-  `$ .qparquet.py.setTable[1_ string file;table]`
+  `$ .qparquet.py.lib[`:setTable][1_ string file;table]`
   };
-
-.qparquet.py.getColumnNames:.p.get`getColumnNames;
 
 .qparquet.getColumnNames:{[file]
-  {x where not x like "_*"}`$ .qparquet.py.getColumnNames[1_ string file]`
+  {x where not x like "_*"}`$ .qparquet.py.lib[`:getColumnNames][1_ string file]`
   };
 
-.qparquet.py.getColumns:.p.get`getColumns;
-
 .qparquet.getColumns:{[file;columns]
-  flip .qparquet.py.getColumns[1_ string file;string columns]`
+  flip .qparquet.py.lib[`:getColumns][1_ string file;string columns]`
   };
 
 .qparquet.getColumn:{[file;column]
   .qparquet.getColumns[file;enlist column]column
   };
 
-.qparquet.py.getColumnCustom:.p.get`getColumnCustom;
-
 .qparquet.getColumnCustom:{[file;column;conversion]
-  .qparquet.py.getColumnCustom[1_ string file;string column;conversion][`] column
+  .qparquet.py.lib[`:getColumnCustom][1_ string file;string column;conversion][`] column
   };
   
 .qparquet.getColumnsCustom:{[file;columns;pyConversions;qConversions]
