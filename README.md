@@ -1,4 +1,4 @@
-# qparquet
+# qParquet
 
 Library to read and write data from parquet files.
 
