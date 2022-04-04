@@ -1,3 +1,5 @@
+**NOTE: This project is archived as KX have released an official interface which is much more performant and feature rich: https://code.kx.com/q/interfaces/arrow/** 
+
 # qParquet
 
 Library to read and write data from parquet files.
